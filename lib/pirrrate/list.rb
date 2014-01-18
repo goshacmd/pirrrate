@@ -1,11 +1,27 @@
 module Pirrrate
-  # An abstract list.
+  # An abstract list of torrents.
+  #
+  # @abstract Sublcass and override {#url}.
   class List
+    # Get a list of torrents.
+    #
+    # @return [Array<Torrent>]
+    def torrents
+      rows.map { |row| build_torrent(row) }
+    end
+
+    # Get a list of torrent rows.
+    #
+    # @return [Nokogiri::XML::NodeSet]
     def rows
       doc = Nokogiri::HTML(open(url.to_uri))
       doc.xpath('.//table/tr')[1..31]
     end
 
+    # Build a torrent object from result row.
+    #
+    # @param row [Nokogiri::XML::Element]
+    # @return [Torrent]
     def build_torrent(row)
       cols = row.xpath('.//td')
 
@@ -27,8 +43,9 @@ module Pirrrate
         Chronic.parse(created_at), size, user, seeders, leechers
     end
 
-    def torrents
-      rows.map { |row| build_torrent(row) }
+    # @return [URL]
+    def url
+      raise NotImplementedError
     end
 
     def inspect

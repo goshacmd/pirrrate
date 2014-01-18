@@ -1,4 +1,5 @@
 module Pirrrate
+  # Ordering values (asc-desc).
   ORDERS = {
     name: [1, 2],
     uploaded: [3, 4],
@@ -9,6 +10,7 @@ module Pirrrate
     type: [13, 14]
   }
 
+  # Category values.
   CATEGORIES = {
     all: 0,
     audio: {

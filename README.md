@@ -17,7 +17,7 @@ Or install it yourself as:
 ```ruby
 require 'pirrrate'
 
-search = Pirrrate.search('breaking bad s01e01', 0, [:seeders, :desc], [:video, :hd_tv_shows])
+search = Pirrrate.search('breaking bad s01e01', order: [:seeders, :desc], category: [:video, :hd_tv_shows])
 search.torrents
 # => [ #<Torrent>, #<Torrent> ]
 

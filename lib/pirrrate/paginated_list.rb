@@ -1,14 +1,22 @@
 module Pirrrate
   # A list with pagionation.
   class PaginatedList < List
-    def page; url[:page] end
+    # Get current page.
+    def page
+      url[:page]
+    end
 
-    def page=(value); url[:page] = value end
+    # Set page.
+    def page=(value)
+      url[:page] = value
+    end
 
+    # Increment page value.
     def next_page
       self.page += 1
     end
 
+    # Decrement page value.
     def previous_page
       self.page = [page - 1, 0].max
     end
